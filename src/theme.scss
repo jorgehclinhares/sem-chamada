@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$sem-chamada-theme-primary: mat-palette($mat-green, 700, 300, 900);
+$sem-chamada-theme-accent: mat-palette($mat-light-blue);
+$sem-chamada-theme-warn: mat-palette($mat-red, A200);
+
+// create theme (use mat-dark-theme for themes with dark backgrounds)
+$sem-chamada-theme: mat-light-theme(
+    $sem-chamada-theme-primary,
+    $sem-chamada-theme-accent,
+    $sem-chamada-theme-warn
+);
+
+@include angular-material-theme($sem-chamada-theme);
