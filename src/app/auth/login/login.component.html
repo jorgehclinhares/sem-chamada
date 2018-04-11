@@ -1,0 +1,40 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center center" [style.height]="'100%'">
+  <div class="banner-container">
+    <div fxLayout="row" fxLayoutAlign="center center" [style.height]="'100%'">
+      <figure>
+        <img src="/assets/images/semchamada_logo.png" alt="Logo Sem Chamada">
+      </figure>
+    </div>
+  </div>
+  <div class="login-container">
+    <div fxFlexFill fxLayout="column">
+      <header fxLayoutAlign="center center">
+        <figure>
+          <img src="/assets/images/semchamada_logo.png" alt="Logo Sem Chamada">
+        </figure>
+      </header>
+      <div fxFlex class="content" fxLayoutAlign="center center">
+        <div class="inner">
+          <div class="message">
+            <h1 class="mat-display-1">Login</h1>
+          </div>
+          <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" class="form">
+            <mat-form-field class="full-width">
+              <input [formControl]="loginForm.controls['email']" matInput type="text" placeholder="E-mail" [required]="true" autofocus>
+              <mat-error *ngIf="loginForm.controls['email'].invalid">Você precisa informar um e-mail válido.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input [formControl]="loginForm.controls['password']" matInput type="password" placeholder="Senha" [required]="true">
+              <mat-error *ngIf="loginForm.controls['password'].invalid">Você precisa informar uma senha.</mat-error>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="primary" class="login-button">
+              Entrar
+              <mat-icon>trending_flat</mat-icon>
+            </button>
+            <button type="button" mat-button color="primary">Esqueceu a senha?</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
