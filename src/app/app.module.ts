@@ -18,6 +18,7 @@ import { WebStorageModule } from './providers/webstorage';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
+    ClassroomListModule,
     WebStorageModule,
     HttpModule
   ],
