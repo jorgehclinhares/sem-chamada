@@ -24,7 +24,7 @@
 <mat-progress-bar *ngIf="loadItems === false" mode="indeterminate"></mat-progress-bar>
 
 <div class="container">
-  <mat-grid-list cols="3" rowHeight="170px">
+  <mat-grid-list cols="3" rowHeight="200px">
 
     <mat-grid-tile class="tile" [colspan]="colspan" rowspan="1" *ngFor="let ghost of ( loadItems ? [] : [1,2,3,4,5,6,7,8,9,10])">
       <mat-card fxFlex class="card" [style.border-left]="'5px solid #F0F0F0'">
@@ -32,6 +32,7 @@
           <div class="line"></div>
           <div class="line line-50"></div>
           <div class="line line-70"></div>
+          <div class="line line-50"></div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -40,6 +41,7 @@
       <mat-card fxFlex class="card" [style.border-left]="'5px solid ' + classroom?.color">
         <mat-card-content>
           <div class="title">{{ classroom?.aula_descricao }}</div>
+          <div class="subtitle">{{ classroom?.modulo_descricao }}</div>
           <div class="description">
             <span class="area" [style.color]="classroom?.color">{{ classroom?.areaconhecimento_descricao }}</span>
             <span class="discipline">{{ classroom?.disciplina_descricao }}</span>

@@ -58,6 +58,10 @@ export class ClassroomListComponent implements OnInit, OnDestroy {
         this.loadItems = true;
         this.classrooms = res.data.map((elem) => {
           elem['color'] = this.cardColors[`${elem.areaconhecimento_id}`];
+          elem['nfd_aula_descricao'] = elem.aula_descricao.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+          elem['nfd_modulo_descricao'] = elem.modulo_descricao.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+          elem['nfd_areaconhecimento_descricao'] = elem.areaconhecimento_descricao.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+          elem['nfd_disciplina_descricao'] = elem.disciplina_descricao.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
           return elem;
         });
         this.searchForm.controls['term'].enable();
