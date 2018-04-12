@@ -10,6 +10,7 @@ import { ClassroomListModule } from './classroom/list/list.module';
 
 import { RequestService } from './providers/request.service';
 import { WebStorageModule } from './providers/webstorage'; 
+import { AuthGuard } from './guards/auth.guard';
 @NgModule({
   declarations: [
     AppComponent
@@ -22,8 +23,8 @@ import { WebStorageModule } from './providers/webstorage';
     WebStorageModule,
     HttpModule
   ],
-  providers: [],
   providers: [
+    AuthGuard,
     RequestService
   ],
   bootstrap: [AppComponent]
