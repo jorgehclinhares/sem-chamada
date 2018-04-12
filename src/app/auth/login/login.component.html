@@ -13,6 +13,9 @@
           <img src="/assets/images/semchamada_logo.png" alt="Logo Sem Chamada">
         </figure>
       </header>
+      <div *ngIf="messageError" class="erro-container">
+        {{ messageError }}
+      </div>
       <div fxFlex class="content" fxLayoutAlign="center center">
         <div class="inner">
           <div class="message">
@@ -27,7 +30,7 @@
               <input [formControl]="loginForm.controls['password']" matInput type="password" placeholder="Senha" [required]="true">
               <mat-error *ngIf="loginForm.controls['password'].invalid">Você precisa informar uma senha.</mat-error>
             </mat-form-field>
-            <button type="submit" mat-raised-button color="primary" class="login-button">
+            <button [disabled]="loginForm.invalid" type="submit" mat-raised-button color="primary" class="login-button">
               Entrar
               <mat-icon>trending_flat</mat-icon>
             </button>
