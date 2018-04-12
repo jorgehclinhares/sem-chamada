@@ -37,7 +37,7 @@ export class RequestService {
     }
 
     if (this.getToken()) {
-      headersOptions['Authorization'] = `Bearer ${this.getToken()}`;
+      headersOptions['Authorization'] = this.getToken();
     }
 
     let headers = new Headers(headersOptions);
@@ -60,7 +60,7 @@ export class RequestService {
     };
 
     if (this.getToken()) {
-      headersOptions['Authorization'] = `Bearer ${this.getToken()}`;
+      headersOptions['Authorization'] = this.getToken();
     }
 
     let headers = new Headers(headersOptions);
