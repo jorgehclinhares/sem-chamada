@@ -8,7 +8,7 @@ import { ROUTE_TRANSITION } from '../../app.animation';
   selector: 'app-login',
   templateUrl: './login.component.html',
   animations: [...ROUTE_TRANSITION],
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
