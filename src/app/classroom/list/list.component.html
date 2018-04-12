@@ -1,8 +1,56 @@
-<mat-toolbar color="primary">
-  <span>Sem Chamada</span>
-  <span class="fill-remaining-space"></span>
-  <mat-icon>search</mat-icon>
-  <mat-form-field fxFlex>
-    <input matInput type="search">
-  </mat-form-field>
+<mat-toolbar color="primary" class="toolbar">
+  <mat-toolbar-row>
+    <!-- <span>Sem Chamada</span> -->
+    <figure class="logo">
+      <img src="/assets/images/semchamada_logo.png" alt="Logo Sem Chamada">
+    </figure>
+    <span class="spacer"></span>
+    <button mat-button [style.color]="classroom?.color" [routerLink]="['/logout']">
+      SAIR
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row class="search-bar">
+    <mat-icon class="icon">search</mat-icon>
+    <mat-form-field fxFlex>
+      <form [formGroup]="searchForm">
+        <input matInput type="search" [formControl]="searchForm.controls['term']">
+      </form>
+    </mat-form-field>
+  </mat-toolbar-row>
 </mat-toolbar>
+
+<mat-progress-bar *ngIf="loadItems === false" mode="indeterminate"></mat-progress-bar>
+
+<div class="container">
+  <mat-grid-list cols="3" rowHeight="170px">
+
+    <mat-grid-tile class="tile" [colspan]="colspan" rowspan="1" *ngFor="let ghost of ( loadItems ? [] : [1,2,3,4,5,6,7,8,9,10])">
+      <mat-card fxFlex class="card" [style.border-left]="'5px solid #F0F0F0'">
+        <mat-card-content class="ghost">
+          <div class="line"></div>
+          <div class="line line-50"></div>
+          <div class="line line-70"></div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile class="tile" [colspan]="colspan" rowspan="1" *ngFor="let classroom of classrooms | filter:termSearch">
+      <mat-card fxFlex class="card" [style.border-left]="'5px solid ' + classroom?.color">
+        <mat-card-content>
+          <div class="title">{{ classroom?.aula_descricao }}</div>
+          <div class="description">
+            <span class="area" [style.color]="classroom?.color">{{ classroom?.areaconhecimento_descricao }}</span>
+            <span class="discipline">{{ classroom?.disciplina_descricao }}</span>
+          </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button [style.color]="classroom?.color">
+            ASSISTIR
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

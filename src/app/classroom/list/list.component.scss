@@ -1,0 +1,66 @@
+.toolbar {
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .logo img {
+    height: 40px;
+    margin-bottom: -10px;
+  }
+  .search-bar {
+    background: #028235;
+    .icon {
+      margin: 0 5px;
+    }
+  }
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+  padding: 1px 0;
+}
+
+@media screen and (max-width: 950px) {
+  .container {
+    width: 100%;
+  }
+}
+
+.card {
+  margin: 5px;
+  color: rgb(85, 85, 85);
+  .title {
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .description {
+    margin-top: 10px;
+
+    span.area {
+      font-weight: 600;
+    }
+
+    span.discipline {
+      color: rgb(126, 126, 126);
+      margin-left: 5px;
+    }
+  }
+  .ghost {
+    .line {
+      background-color: #F0F0F0;
+      width: 100%;
+      height: 17px;
+      border-radius: 20px;
+      margin: 7px;
+    }
+    .line.line-70 {
+      width: 70%;
+    }
+
+    .line.line-50 {
+      width: 50%;
+    }
+  }
+}
+
