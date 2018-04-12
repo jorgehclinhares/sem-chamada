@@ -27,6 +27,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.request.getToken()) {
+      this.router.navigate(['/classroom']);
+    }
   }
 
   login(value) {
