@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestService } from '../../providers/request.service';
 import { ROUTE_TRANSITION } from '../../app.animation';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,11 @@ import { ROUTE_TRANSITION } from '../../app.animation';
   animations: [...ROUTE_TRANSITION],
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
   messageError: string;
+  requestSubscription: Subscription;
 
   constructor(
     formBuilder: FormBuilder,
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
 
     this.messageError = null;
 
-    this.request.post('http://plurieducacional.com.br/homologacao/pluriidapi/webservice.php', request).subscribe(
+    this.requestSubscription = this.request.post('http://plurieducacional.com.br/homologacao/pluriidapi/webservice.php', request).subscribe(
       (res) => {
         if (res.hasOwnProperty('erros')) {
 
@@ -70,5 +72,8 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  ngOnDestroy() {
+    this.requestSubscription.unsubscribe();
+  }
 
 }
