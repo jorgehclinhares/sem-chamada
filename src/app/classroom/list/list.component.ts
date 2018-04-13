@@ -1,8 +1,8 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RequestService } from '../../providers/request.service';
 import { Router } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -19,6 +19,7 @@ export class ClassroomListComponent implements OnInit, OnDestroy {
   loadItems: boolean;
   searchSubscription: Subscription;
   requestSubscription: Subscription;
+  windowSubscription: Subscription;
 
   constructor(
     formBuilder: FormBuilder,
@@ -41,16 +42,12 @@ export class ClassroomListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.searchSubscription = this.searchForm.controls['term'].valueChanges.subscribe(
-      (value) => {
-        if (value && value.length > 2) {
-          this.termSearch = value;
-        } else {
-          this.termSearch = "";
-        }
-      }
-    );
+    this.inputSearchTrack();
+    this.windowTrack();
+    this.getClassrom();
+  }
 
+  getClassrom() {
     this.requestSubscription = this.request.get('http://hom.plurieducacional.com.br/hom.semchamada.plurieducacional.com.br/back/public/aulas ', {}).subscribe(
       (res) => {
         this.loadItems = true;
@@ -72,19 +69,34 @@ export class ClassroomListComponent implements OnInit, OnDestroy {
     );
   }
 
-  @HostListener('window:resize', ['$event']) onResize(event) {
-    const element = event.target.innerWidth;
+  inputSearchTrack() {
+    this.searchSubscription = this.searchForm.controls['term'].valueChanges.subscribe(
+      (value) => {
+        if (value && value.length > 2) {
+          this.termSearch = value;
+        } else {
+          this.termSearch = "";
+        }
+      }
+    );
+  }
 
-    if (element < 700) {
-      this.colspan = 3;
-    } else {
-      this.colspan = 1;
-    }
+  windowTrack() {
+    this.windowSubscription = Observable.fromEvent(window, 'resize').debounceTime(300).subscribe(
+      (event: any) => {
+        if (event.target.innerWidth < 700) {
+          this.colspan = 3;
+        } else {
+          this.colspan = 1;
+        }
+      }
+    );
   }
 
   ngOnDestroy() {
     this.searchSubscription.unsubscribe();
     this.requestSubscription.unsubscribe();
+    this.windowSubscription.unsubscribe();
   }
 
 }
