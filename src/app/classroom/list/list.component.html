@@ -24,7 +24,7 @@
 <mat-progress-bar *ngIf="loadItems === false" mode="indeterminate"></mat-progress-bar>
 
 <div class="container">
-  <mat-grid-list cols="3" rowHeight="200px">
+  <mat-grid-list cols="3" rowHeight="210px">
 
     <mat-grid-tile class="tile" [colspan]="colspan" rowspan="1" *ngFor="let ghost of ( loadItems ? [] : [1,2,3,4,5,6,7,8,9,10])">
       <mat-card fxFlex class="card" [style.border-left]="'5px solid #F0F0F0'">

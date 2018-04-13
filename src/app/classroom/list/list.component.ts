@@ -35,8 +35,6 @@ export class ClassroomListComponent implements OnInit, OnDestroy {
 
     if (window.innerWidth < 700) {
       this.colspan = 3;
-    } else if (window.innerWidth < 950) {
-      this.colspan = 1;
     } else {
       this.colspan = 1;
     }
@@ -79,8 +77,6 @@ export class ClassroomListComponent implements OnInit, OnDestroy {
 
     if (element < 700) {
       this.colspan = 3;
-    } else if (element < 950) {
-      this.colspan = 1;
     } else {
       this.colspan = 1;
     }
